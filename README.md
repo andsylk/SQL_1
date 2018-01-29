@@ -1,62 +1,63 @@
-
-1a) 
+#### SQL Assigment using sakila database
+#### SQL Query Responses 
+###### 1a) 
 
     select first_name, last_name 
     from actor;
 
-1b) 
+###### 1b) 
 
     select upper(concat(first_name, " ", last_name)) as "Actor Name"
     from actor;
 
-2a) 
+###### 2a) 
 
     select actor_id, first_name, last_name
     from actor
     where first_name = 'Joe';
 
-2b)
+###### 2b)
 
     select * 
     from actor
     where last_name like '%gen%';
 
-2c)
+###### 2c)
 
     select *
     from actor 
     where last_name like '%li%'
     order by last_name, first_name;
 
-2d)
+###### 2d)
 
     select country_id, country
     from country
     where country in ('Afghanistan', 'Bangladesh', 'China');
 
-3a) 
+###### 3a) 
 
     alter table actor
     add column middle_name varchar(50) after first_name;
 
-3b) 
+###### 3b) 
 
     alter table actor
     modify column middle_name blob;
 
-3c)
+###### 3c)
 
     alter table actor
     drop column middle_name;
 
-4a)
+###### 4a)
 
     select last_name, count(*)
     from actor
     group by last_name;
 
 
-4b)
+###### 4b)
 
     select last_name, count(*)
     from actor
@@ -64,7 +65,7 @@
     having count(*) >=2;
 
 
-4c)
+###### 4c)
 
     update actor
     set first_name = 'HARPO'
@@ -72,24 +73,24 @@
     and last_name = 'williams';
 
 
-4d) 
+###### 4d) 
 
     update actor
     set first_name = if (first_name = 'harpo' and last_name = 'williams', 'GROUCHO', if(first_name != 'harpo' and last_name = 'williams', 'MUCHO GROUCHO',first_name));
 
-5a)
+###### 5a)
 
     show create table sakila.address;
 
 
-6a)
+###### 6a)
 
     select s.first_name, s.last_name, a.address
     from staff s 
     join address a
     on s.address_id = a.address_id;
 
-6b)
+###### 6b)
 
     select s.first_name, s.last_name, sum(p.amount) as total_amount
     from staff s
@@ -100,8 +101,7 @@
     group by s.first_name, s.last_name;
 
 
-
-6c)
+###### 6c)
 
     select f.title, count(*) as number_of_actors
     from film f
@@ -109,7 +109,7 @@
     on f.film_id = fa.film_id
     group by f.title;
 
-6d)
+###### 6d)
 
     select count(i.film_id) as copies
     from inventory i
@@ -117,7 +117,7 @@
     on i.film_id = f.film_id
     where f.title = 'Hunchback Impossible';
 
-6e)
+###### 6e)
 
     select c.first_name, c.last_name, sum(p.amount) as total_paid
     from customer c
@@ -126,20 +126,20 @@
     group by c.first_name, c.last_name
     order by last_name;
  
-7a)
+###### 7a)
 
     select title
     from film
     where (title like 'K%' or title like 'Q%')
     and language_id in (select language_id from language where name = 'English');
 
-7b)
+###### 7b)
 
     select first_name, last_name
     from actor
     where actor_id in (select actor_id from film_actor where film_id in (select film_id from film where title = 'Alone Trip'));
 
-7c)
+###### 7c)
 
     select first_name, last_name, lower(email) as email
     from customer cu
@@ -152,7 +152,7 @@
     where co.country = 'Canada';
 
 
-7d)
+###### 7d)
 
     select f.title
     from film f
@@ -163,7 +163,7 @@
     where c.name = 'Family';
 
 
-7e)
+###### 7e)
 
     select f.title, count(distinct r.rental_id)
     from rental r
@@ -175,7 +175,7 @@
     order by 2 desc;
 
 
-7f)
+###### 7f)
 
     select s.store_id, sum(p.amount) as total
     from store s
@@ -185,7 +185,7 @@
     on sf.staff_id = p.staff_id
     group by 1;
 
-7g)
+###### 7g)
 
     select s.store_id, c.city, co.country
     from store s
@@ -196,7 +196,7 @@
     join country co
     on c.country_id = co.country_id;
 
-7h)
+###### 7h)
 
     select c.name , sum(p.amount) as revenue
     from category c
@@ -213,7 +213,7 @@
     limit 5;
 
 
-8a)
+###### 8a)
 
     create view top_five_genres as 
     select c.name, sum(p.amount) as revenue
@@ -232,10 +232,10 @@
 
 
 
-8b)
+###### 8b)
 
     select * from top_five_genres;
 
-8c)
+###### 8c)
 
     drop view if exists top_five_genres;
