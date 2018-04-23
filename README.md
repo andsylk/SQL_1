@@ -1,4 +1,7 @@
-#### SQL Assigment using sakila database
+#### SQL Skills using sakila database
+
+#### Using the sakila database, in MYSQL, I created many SQL queries that analyzed the data.
+
 #### SQL Query Responses 
 ###### 1a) 
 
